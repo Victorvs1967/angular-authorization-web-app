@@ -1,0 +1,28 @@
+<div class="outer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <form class="form panel border">
+          <h2>Login</h2>
+          <hr>
+          <div class="mb-3">
+            <label for="InputUsername1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="InputUsername1" aria-describedby="usernameHelp">
+            <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="InputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="InputPassword1">
+            <div class="form-inline fr mt-4 text-center">
+              <a href="#!" id="forget">Forget Password</a>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 btn-lg">Submit</button>
+          <div class="text-center pt-3 text-muted">Don't have account? 
+            <a routerLink="/auth/signup" id="forget">Sign Up</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
