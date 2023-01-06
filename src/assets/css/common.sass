@@ -1,0 +1,63 @@
+.outer
+  min-height: 100vh
+  padding: 4rem 0
+  background: linear-gradient(to top, #c9c9ff 50%,#6e6ef6 90%) no-repeat
+  .panel
+    min-height: 38rem
+    padding: 0 4rem
+    box-shadow: 2rem 2rem 8rem rgb(218, 218,218)
+    border-radius: 1.5rem
+  .form
+    width: 45%
+    margin: 0 auto
+    padding: 2rem
+    background-color: #fff
+    .input-field
+      padding: 1rem
+      display: flex
+      align-items: center
+      border-radius: .5rem
+      border: 1px solid #ddd
+      color: #4343ff
+      cursor: pointer
+      &.error
+        border: 1px solid red
+        color: red
+      input::placeholder
+        padding-left: .5rem
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="phone"]
+        width: 100%
+        border: none
+        outline: none
+        box-shadow: none
+    #forget
+      min-width: 10rem
+      margin-left: auto
+    &-inline
+      margin-bottom: 1rem
+    .btn
+      padding: .8rem
+      border-radius: 2rem
+      font-size: 1.6rem
+  img
+    width: 4rem
+    height: 4rem
+    position: relative
+    object-fit: cover
+    border-radius: 50%
+  .social
+    font-size: 3rem
+  .bordert
+    border-top: 1px solid #aaa
+    position: relative
+    margin-top: 1rem
+    &::after
+      content: "or sign up with"
+      position: absolute
+      top: -13px
+      left: 37%
+      background-color: #fff
+      padding: 0 1rem

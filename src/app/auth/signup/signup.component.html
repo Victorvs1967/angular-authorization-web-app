@@ -4,46 +4,64 @@
       <div class="col-lg-12">
         <form class="row g-3 form panel border">
           <h2>Sign Up</h2>
-          <hr>
-          <div class="col-md-6">
-            <label for="inputUsername4" class="form-label">Username</label>
-            <input type="text" class="form-control" id="inputUsername4">
+          <hr class="mb-4">
+          <div class="form-group pt-2">
+            <div class="input-field">
+              <span class="fa fa-user p-2"></span>
+              <input type="text" placeholder="Username">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword4">
+          <div class="form-group d-flex pt-2">
+            <div class="col me-4 input-field">
+              <span class="fa fa-lock p-2"></span>
+              <input [type]="type" placeholder="Password">
+              <span (click)="hideShowPass()" [class]="'fa fa-eye' + slash"></span>
+            </div>
+            <div class="col input-field">
+              <span class="fa fa-lock p-2"></span>
+              <input [type]="type" placeholder="Rewright password">
+              <span (click)="hideShowPass()" [class]="'fa fa-eye' + slash"></span>
+            </div>
           </div>
-          <div class="col-md-12">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
+          <div class="form-group pt-2">
+            <div class="input-field">
+              <span class="fas fa-envelope-square p-2"></span>
+              <input type="email" placeholder="Email">
+            </div>
           </div>
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          <div class="form-group d-flex pt-1">
+            <div class="col me-4 input-field">
+              <span class="fas fa-user-alt p-2"></span>
+              <input type="text" placeholder="Firstname">
+            </div>
+            <div class="col input-field">
+              <span class="fas fa-user-alt p-2"></span>
+              <input type="text" placeholder="Lastname">
+            </div>
           </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          <div class="form-group pt-2">
+            <div class="input-field">
+              <span class="fas fa-phone p-2"></span>
+              <input type="phone" placeholder="Phone">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+          <div class="form-group pt-2">
+            <div class="input-field">
+              <span class="fas fa-home p-2"></span>
+              <input type="text" placeholder="Address">
+            </div>
           </div>
           <div class="col-md-12 py-4">
-            <button type="submit" class="btn btn-primary w-100 btn-lg">Sign in</button>
-            <div class="text-center pt-2 text-muted">You have account?
+            <button type="submit" class="btn btn-primary w-100 btn-block mt-4">Sign Up</button>
+            <div class="text-center pt-2 text-muted">Allready have account?
               <a routerLink="/auth/login" id="forget">Login</a>
+            </div>
+          </div>
+          <div class="py-2 bordert">
+            <div class="text-center py-3 social">
+              <a href="https://www.facebook.com" target="_blank" class="px-2"><span class="fab fa-facebook p-2"></span></a>
+              <a href="https://www.google.com" target="_blank" class="px-2"><span class="fab fa-google p-2"></span></a>
+              <a href="https://www.github.com" target="_blank" class="px-2"><span class="fab fa-github p-2"></span></a>
             </div>
           </div>
         </form>
