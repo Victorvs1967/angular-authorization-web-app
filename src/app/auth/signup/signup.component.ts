@@ -22,7 +22,10 @@ export class SignupComponent {
       firstName: '',
       lastName: '',
       phone: '',
-      address: '',
+      apartment: '',
+      street: '',
+      city: '',
+      country: '',
     });
   }
 
@@ -36,10 +39,12 @@ export class SignupComponent {
         lastName: this.signupForm.value.lastName,
         phone: this.signupForm.value.phone,
         address: {
-          city: this.signupForm.value.address,
+          apartment: this.signupForm.value.apartment,
+          street: this.signupForm.value.street,
+          city: this.signupForm.value.city,
+          country: this.signupForm.value.country,
         },
       };
-
       this.auth.signup(user).subscribe(data => console.log(data));
       this.signupForm.reset();
     }
