@@ -23,7 +23,7 @@
           <div class="form-inline fr mt-4">
             <a href="#!" id="forget">Forget Password</a>
           </div>
-          <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="!loginForm.valid">Login</button>
+          <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="loginForm.invalid">Login</button>
           <div class="text-center py-4 text-muted">Don't have account? 
             <a routerLink="/auth/signup" id="forget">Sign Up</a>
           </div>

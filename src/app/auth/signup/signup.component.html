@@ -36,7 +36,12 @@
               <input type="email" placeholder="Email" formControlName="email">
             </div>
           </div>
-          <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')" class="text-danger">*Email is required</small>
+          <small *ngIf="signupForm.controls['email'].dirty && 
+                        signupForm.hasError('required', 'email') ||
+                        signupForm.hasError('email', 'email')" 
+                        class="text-danger">
+            *Email is required or wrong format
+          </small>
           <div class="form-group d-flex pt-1">
             <div class="col me-2 input-field">
               <span class="fas fa-user-alt p-2"></span>
@@ -74,7 +79,7 @@
             </div>
           </div>
           <div class="col-md-12 py-4">
-            <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="!signupForm.valid">Sign Up</button>
+            <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="signupForm.invalid">Sign Up</button>
             <div class="text-center pt-2 text-muted">Allready have account?
               <a routerLink="/auth/login" id="forget">Login</a>
             </div>
