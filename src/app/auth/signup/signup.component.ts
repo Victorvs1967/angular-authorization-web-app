@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,9 +16,10 @@ export class SignupComponent {
 
   constructor(private auth: AuthService, private formBuilder: FormBuilder) {
     this.signupForm = this.formBuilder.group({
-      username: '',
-      password: '',
-      email: '',
+      username: ['', Validators.required ],
+      password: ['', Validators.required ],
+      password2: ['', Validators.required ],
+      email: ['', [ Validators.required, Validators.email ] ],
       firstName: '',
       lastName: '',
       phone: '',

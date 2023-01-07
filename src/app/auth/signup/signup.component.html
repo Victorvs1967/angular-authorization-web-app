@@ -11,6 +11,7 @@
               <input type="text" placeholder="Username" formControlName="username">
             </div>
           </div>
+          <small *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')" class="text-danger">*Username is required</small>
           <div class="form-group d-flex pt-2">
             <div class="col me-2 input-field">
               <span class="fa fa-lock p-2"></span>
@@ -19,16 +20,23 @@
             </div>
             <div class="col input-field">
               <span class="fa fa-lock p-2"></span>
-              <input [type]="type" placeholder="Rewright password">
+              <input [type]="type" placeholder="Rewright password" formControlName="password2">
               <span (click)="hideShowPass()" [class]="'fa fa-eye' + slash"></span>
             </div>
           </div>
+          <small *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password') ||
+                        signupForm.controls['password2'].dirty && signupForm.hasError('required', 'password2') || 
+                        (signupForm.controls['password'].value !== signupForm.controls['password2'].value)" 
+                        class="text-danger">
+            *Password is required or rewrite passwords not equal
+          </small>
           <div class="form-group pt-2">
             <div class="input-field">
               <span class="fas fa-envelope-square p-2"></span>
               <input type="email" placeholder="Email" formControlName="email">
             </div>
           </div>
+          <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')" class="text-danger">*Email is required</small>
           <div class="form-group d-flex pt-1">
             <div class="col me-2 input-field">
               <span class="fas fa-user-alt p-2"></span>
@@ -66,7 +74,7 @@
             </div>
           </div>
           <div class="col-md-12 py-4">
-            <button type="submit" class="btn btn-primary w-100 btn-block mt-4">Sign Up</button>
+            <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="!signupForm.valid">Sign Up</button>
             <div class="text-center pt-2 text-muted">Allready have account?
               <a routerLink="/auth/login" id="forget">Login</a>
             </div>
