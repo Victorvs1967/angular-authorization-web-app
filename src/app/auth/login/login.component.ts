@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm?.valid) {
-      console.log(this.loginForm?.value);
-      this.auth.login(this.loginForm?.value.username, this.loginForm?.value.password)
+      this.auth.login(this.loginForm.value.username, this.loginForm.value.password)
         .subscribe(() => console.log(sessionStorage.getItem('token')));
+      this.loginForm.reset();
     }
   }
 
