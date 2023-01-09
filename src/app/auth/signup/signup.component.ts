@@ -19,7 +19,6 @@ export class SignupComponent {
     private auth: AuthService, 
     private formBuilder: FormBuilder,
   ) {
-
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required ],
       password: ['', Validators.required ],
@@ -51,7 +50,10 @@ export class SignupComponent {
           country: this.signupForm.value.country,
         },
       };
-      this.auth.signup(user).subscribe(data => console.log(data));
+      this.auth.signup(user).subscribe({
+        next: res => alert(JSON.stringify(res)),
+        error: err => alert(err.error.message)
+      });
       this.signupForm.reset();
     } else  if (this.signupForm) {
       ValidateForm.validateAllFormFields(this.signupForm);

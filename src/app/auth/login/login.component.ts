@@ -11,27 +11,27 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
 
+  loginForm: FormGroup;
   type: string = 'password';
   slash: string = '-slash';
-  
-  loginForm?: FormGroup;
 
   constructor(
-    private auth: AuthService, 
     private formBuilder: FormBuilder, 
+    private auth: AuthService, 
   ) {
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required ],
       password: ['', Validators.required ],
     });
   }
 
-  onSubmit() {
-    if (this.loginForm?.valid) {
-      const user: LoginInfo = { username: this.loginForm.value.username, password: this.loginForm.value.password };
-      this.auth.login(user)
-        .subscribe(() => console.log(sessionStorage.getItem('token')));
+  onLogin() {
+    if (this.loginForm.valid) {
+      this.auth.login(this.loginForm.value)
+        .subscribe({
+          next: res => alert(res),
+          error: err => alert(err.error.message)
+        });
       this.loginForm.reset();
     } else if (this.loginForm) {
       ValidateForm.validateAllFormFields(this.loginForm);
