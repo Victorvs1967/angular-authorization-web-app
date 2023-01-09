@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import ValidateForm from './helpers/validate-form.helper';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ValidateForm,
   ],
   bootstrap: [AppComponent]
 })

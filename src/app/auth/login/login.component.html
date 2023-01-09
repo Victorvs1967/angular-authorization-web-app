@@ -6,14 +6,14 @@
           <h1>Login</h1>
           <hr class="mb-4">
           <div class="form-group pt-2">
-            <div class="input-field mt-4">
+            <div class="input-field mt-4" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
               <span class="fa fa-user p-2"></span>
               <input type="text" placeholder="Username" formControlName="username">
             </div>
           </div>
           <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" class="text-danger">*Username is required</small>
           <div class="form-group pt-2">
-            <div class="input-field mt-4">
+            <div class="input-field mt-4" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
               <span class="fa fa-lock p-2"></span>
               <input [type]="type" placeholder="Password" formControlName="password">
               <span (click)="hideShowPass()" [class]="'fa fa-eye' + slash"></span>
@@ -23,7 +23,8 @@
           <div class="form-inline fr mt-4">
             <a href="#!" id="forget">Forget Password</a>
           </div>
-          <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="loginForm.invalid">Login</button>
+          <!-- <button type="submit" class="btn btn-primary w-100 btn-block mt-4" [disabled]="loginForm.invalid">Login</button> -->
+          <button type="submit" class="btn btn-primary w-100 btn-block mt-4">Login</button>
           <div class="text-center py-4 text-muted">Don't have account? 
             <a routerLink="/auth/signup" id="forget">Sign Up</a>
           </div>

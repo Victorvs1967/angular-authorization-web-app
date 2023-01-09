@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import ValidateForm from 'src/app/helpers/validate-form.helper';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,7 +15,11 @@ export class SignupComponent {
   slash: string = '-slash';
   signupForm?: FormGroup;
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor(
+    private auth: AuthService, 
+    private formBuilder: FormBuilder,
+  ) {
+
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required ],
       password: ['', Validators.required ],
@@ -48,6 +53,9 @@ export class SignupComponent {
       };
       this.auth.signup(user).subscribe(data => console.log(data));
       this.signupForm.reset();
+    } else  if (this.signupForm) {
+      ValidateForm.validateAllFormFields(this.signupForm);
+      alert('Your form is invalid.');
     }
   }
 
