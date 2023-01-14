@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validate-form.helper';
-import { LoginInfo } from 'src/app/models/login.info.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,8 +17,10 @@ export class LoginComponent {
   slash: string = '-slash';
 
   constructor(
-    private formBuilder: FormBuilder, 
     private auth: AuthService, 
+    private formBuilder: FormBuilder, 
+    private router: Router,
+    private toast: NgToastService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required ],
@@ -27,12 +30,16 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
+      const username = this.loginForm.value.username;
       this.auth.login(this.loginForm.value)
         .subscribe({
-          next: res => alert(res),
-          error: err => alert(err.error.message)
+          next: res => {
+            this.loginForm.reset();
+            this.showSuccess(username.concat(' login success...'));
+            this.router.navigate(['/api/hello']);
+          },
+          error: err => this.showError(err.error.message),
         });
-      this.loginForm.reset();
     } else if (this.loginForm) {
       ValidateForm.validateAllFormFields(this.loginForm);
       alert('Your form is invalid.');
@@ -44,4 +51,21 @@ export class LoginComponent {
     this.type = isPass ? 'text' : 'password';
     this.slash = isPass ? '' : '-slash';
   }
+
+  showSuccess(msg: string) {
+    this.toast.success({ detail: "SUCCESS", summary: msg, sticky: true });
+  }
+
+  showError(msg: string) {
+    this.toast.error({ detail: "ERROR", summary: msg, duration: 5000 });
+  }
+
+  showInfo() {
+    this.toast.info({ detail: "INFO", summary: 'Your Info Message', sticky: true });
+  }
+
+  showWarn() {
+    this.toast.warning({ detail: "WARN", summary: 'Your Warn Message', duration: 5000 });
+  }
+
 }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import ValidateForm from './helpers/validate-form.helper';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,10 @@ import ValidateForm from './helpers/validate-form.helper';
     HttpClientModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     ValidateForm,
   ],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validate-form.helper';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,6 +19,7 @@ export class SignupComponent {
   constructor(
     private auth: AuthService, 
     private formBuilder: FormBuilder,
+    private router: Router,
   ) {
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required ],
@@ -51,7 +53,10 @@ export class SignupComponent {
         },
       };
       this.auth.signup(user).subscribe({
-        next: res => alert(JSON.stringify(res)),
+        next: res => {
+          alert(res.username.concat(' sign up successfully...'));
+          this.router.navigate(['/auth/login']);
+      },
         error: err => alert(err.error.message)
       });
       this.signupForm.reset();
