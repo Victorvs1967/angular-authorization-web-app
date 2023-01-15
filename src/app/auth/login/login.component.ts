@@ -35,7 +35,7 @@ export class LoginComponent {
         .subscribe({
           next: res => {
             this.loginForm.reset();
-            this.showSuccess(username.concat(' login success...'));
+            this.showSuccess(res);
             this.router.navigate(['/api/hello']);
           },
           error: err => this.showError(err.error.message),

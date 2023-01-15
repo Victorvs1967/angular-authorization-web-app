@@ -16,7 +16,10 @@ export class AuthService {
     sessionStorage.clear();
     return this.http.post<any>(
       environment.authUrl.concat('login'), loginInfo)
-      .pipe(map((res: any) => sessionStorage.setItem('token', res.token)));
+      .pipe(map((res: any) => {
+        sessionStorage.setItem('token', res.token);
+        return res.message;
+    }));
   }
 
   signup(user: User): Observable<User> {
